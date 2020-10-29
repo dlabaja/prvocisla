@@ -1,0 +1,101 @@
+using System;
+using System.Collections.Generic;
+
+
+namespace učím_se_programming
+{
+
+
+    public class Program
+    {
+
+
+        public static void Main(string[] args)
+        {
+
+        Label1:
+            /////dotnet publish -c Release -r win10-x64 -p:PublishSingleFile=true -p:PublishTrimmed=true 
+            System.Console.WriteLine("Zadejte limit pro prvočísla");
+            double a;
+            int pocet = 0;
+
+            while (!double.TryParse(Console.ReadLine(), out a))
+            {
+                System.Console.WriteLine("Neplatný limit, zkuste to prosím znovu!");
+                goto Label1;
+            }
+
+            string cislos = a.ToString();
+
+
+            if (cislos.Contains("."))
+            {
+                System.Console.WriteLine("Neplatný limit, zkuste to prosím znovu!");
+                goto Label1;
+            }
+            if (cislos.Contains(","))
+            {
+                System.Console.WriteLine("Neplatný limit, zkuste to prosím znovu!");
+                goto Label1;
+            }
+            else
+            {
+                if (a % 2 != 0)
+                {
+                    long a1 = Convert.ToInt64(a + 1);
+                    long a2 = Convert.ToInt64(a1 / 2);
+                    for (int i = 2; i <= a; i++)
+                    {
+                        pocet = 0;
+                        for (int j = 1; j <= a2; j++)
+                        {
+
+
+                            if (i % j == 0)
+                            {
+                                pocet++;
+                                //System.Console.WriteLine(i + " " + j);
+                            }
+
+                        }
+                        if (pocet <= 2)
+                        {
+                            Console.Write(i + "; ");
+                        }
+                    }
+                }
+                if (a % 2 == 0)
+                {
+                    long a3 = Convert.ToInt64(a / 2);
+                    for (int i = 2; i <= a; i++)
+                    {
+                        pocet = 0;
+                        for (int j = 1; j <= a3; j++)
+                        {
+
+
+                            if (i % j == 0)
+                            {
+                                pocet++;
+                                //System.Console.WriteLine(i + " " + j);
+                            }
+
+                        }
+                        if (pocet <= 2)
+                        {
+                            Console.Write(i + "; ");
+                        }
+                    }
+                }
+                System.Console.WriteLine("\n\n");
+                goto Label1;
+
+
+            }
+
+            ///
+            Console.ReadKey();
+        }
+    }
+}
+
